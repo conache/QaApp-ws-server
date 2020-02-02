@@ -15,14 +15,14 @@ init = function (server) {
 
 authorize = function ( socket, next ){
   if( !socket.handshake.query.token ){
-      socket.emit('unauthorized');
+    socket.disconnect('unauthorized');
   }
   token = socket.handshake.query.token
   const cert_pub = fs.readFileSync(__dirname + '/secrets/jwt-rsa-public.pem');
 
   jwt.verify(token, cert_pub, { algorithms: ['RS256']}, function(err, decoded) {           
       if (err) {
-          socket.emit('unauthorized');   
+        socket.disconnect('unauthorized');
       } else {
           socketObjects[decoded.email] = socket;
           socketObjects[decoded.email].on('disconnect', () => {
