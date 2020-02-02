@@ -3,7 +3,7 @@ const {Consumer} = require('sqs-consumer');
 const socketHandler = require("./socketHandler");
 const queueUrl = "https://sqs.us-east-2.amazonaws.com/741022728687/qaNotification.fifo";
 
-AWS.config.loadFromPath("./aws-config.json");
+AWS.config.loadFromPath("./secrets/aws-config");
 
 const sqsConsumer = Consumer.create({
   queueUrl,

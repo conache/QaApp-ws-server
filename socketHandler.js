@@ -11,7 +11,6 @@ init = function (server) {
   io.on('connection', (socket) => {
     io.use(authorize);
   });
-
 }
 
 authorize = function ( socket, next ){
@@ -19,7 +18,7 @@ authorize = function ( socket, next ){
       socket.emit('unauthorized');
   }
   token = socket.handshake.query.token
-  const cert_pub = fs.readFileSync(__dirname + '/jwt-rsa-public.pem');
+  const cert_pub = fs.readFileSync(__dirname + '/secrets/jwt-rsa-public.pem');
 
   jwt.verify(token, cert_pub, { algorithms: ['RS256']}, function(err, decoded) {           
       if (err) {
