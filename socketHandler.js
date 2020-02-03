@@ -49,7 +49,7 @@ sendNotification = function (message) {
   receivers.forEach(email => {
     if (socketObjects.hasOwnProperty(email)) {
       console.log(`Sending notification to ${email}`);
-      socketObjects[email].emit("notification", message.notification);
+      socketObjects[email].emit("notification", JSON.parse(message.notification));
     }
   })
 }
