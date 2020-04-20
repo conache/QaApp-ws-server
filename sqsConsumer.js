@@ -1,7 +1,7 @@
 const AWS = require("aws-sdk");
 const { Consumer } = require("sqs-consumer");
 const socketHandler = require("./socketHandler");
-const queueUrl = "https://sqs.us-east-2.amazonaws.com/523585920065/qaSQS2";
+const queueUrl = "https://sqs.us-east-2.amazonaws.com/741022728687/sqsQA";
 
 AWS.config.loadFromPath("secrets/aws-config.json");
 
